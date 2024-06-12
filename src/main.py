@@ -18,7 +18,8 @@ allowedInsideOrder = ['cst', 'cts', 'stc', 'sct', 'tsc', 'tcs']
 # Ex: sphere = cc
 # this does account for reversals
 # | prism = st, ts | pyramid = tt | cylinder = sc, cs | cone = ts, st | cube = ss | sphere = cc |
-allowedOutsideShapes = ['prism', 'pyramid', 'cylinder', 'cone', 'cube', 'sphere'] # i mean this technically becomes the allowedOrder?
+# allowedOutsideShapes = ['prism', 'pyramid', 'cylinder', 'cone', 'cube', 'sphere'] # i mean this technically becomes the allowedOrder?
+allowedOutsideShapes = ['st', 'ts', 'tt', 'sc', 'cs', 'ts', 'st', 'ss', 'cc']
 
 
 print('Your inside order is: ' + getInsideOrder())

@@ -18,15 +18,50 @@ def checkOrder(order, allowedOrder):
     else:
       checkOrder(order)
 
+# 
 def spliceString(orderString):
   separatedLetterList = []
   for letter in orderString:
     separatedLetterList.append(letter)
   return separatedLetterList
 
-def assignPositions(letterList):
-  letterPositions = dict(left = letterList[0], middle = letterList[1], right = letterList[2])
-  return letterPositions
+# assigns inside positions (cst) to left, middle, or right 
+# def assignPositions(letterList):
+#   letterPositions = dict(left = letterList[0], middle = letterList[1], right = letterList[2])
+#   return letterPositions
+
+# assigns inside letters (cst) with outside 3d shapes
+def assignPairs(letterList, outsideOrderInput):
+  leftLetter = letterList[0]
+  middleLetter = letterList[1]
+  rightLetter = letterList[2]
+  positionPairs = dict(leftLetter = outsideOrderInput[0], middleLetter = outsideOrderInput[1], rightLetter = outsideOrderInput[2])
+  return positionPairs
+
+def findCorrectSolution(positionPairs):
+  keys = positionPairs.keys()
+  for key in keys:
+    if key == 'c':
+      positionPairs.update({'c' : 'ts'})
+    if key == 't':
+      positionPairs.update({'t' : 'sc'})
+    if key == 's':
+      positionPairs.update({'s' : 'tc'})
+  return positionPairs
+    
+def checkMatchingPerPillar(positionPairs):
+  for key in positionPairs:
+    if key == positionPairs[key]:
+      isPillarGood = False
+
+# if triangle left:
+#   if has triangle in it = bad
+#   if has sphere or cube = bad
+    
+      
+
+
+
 
 # def checkOutsideOrder(order, allowedOrder, shapesList):
 #   if order in shapesList:
