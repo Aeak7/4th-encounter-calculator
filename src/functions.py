@@ -57,11 +57,21 @@ def checkMatchingPerPillar(positionPairs):
 # if triangle left:
 #   if has triangle in it = bad
 #   if has sphere or cube = bad
-    
-      
 
+# c    s   t
+# cs, st, tc      check if left needed change. what needed change? c. check mid needed cange. what needed change? s. etc. prior leftmost to swap
+# ss, tc, tc      check again if need change. left still wrong. need c. mid correct. right wrong. right need t. swap the wrong
+# st, tc, sc done check if right
 
-
+def checkIsPillarDone(insideInput, outsideInput, position):
+  if insideInput[position] in outsideInput[position]:
+    isDone = False
+    print("On side " + insideInput[position] + " the " + insideInput[position] + " should not be in " + outsideInput[position])
+    splitIncorrectOutside = spliceString(outsideInput[position]) 
+  else:
+    isDone = True
+    print("The corresponding shape to " + insideInput[position] + " is " + outsideInput[position] + " and should be done.")
+  return isDone
 
 # def checkOutsideOrder(order, allowedOrder, shapesList):
 #   if order in shapesList:
