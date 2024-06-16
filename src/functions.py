@@ -31,28 +31,28 @@ def spliceString(orderString):
 #   return letterPositions
 
 # assigns inside letters (cst) with outside 3d shapes
-def assignPairs(letterList, outsideOrderInput):
-  leftLetter = letterList[0]
-  middleLetter = letterList[1]
-  rightLetter = letterList[2]
-  positionPairs = dict(leftLetter = outsideOrderInput[0], middleLetter = outsideOrderInput[1], rightLetter = outsideOrderInput[2])
-  return positionPairs
+# def assignPairs(letterList, outsideOrderInput):
+#   leftLetter = letterList[0]
+#   middleLetter = letterList[1]
+#   rightLetter = letterList[2]
+#   positionPairs = dict(leftLetter = outsideOrderInput[0], middleLetter = outsideOrderInput[1], rightLetter = outsideOrderInput[2])
+#   return positionPairs
 
-def findCorrectSolution(positionPairs):
-  keys = positionPairs.keys()
-  for key in keys:
-    if key == 'c':
-      positionPairs.update({'c' : 'ts'})
-    if key == 't':
-      positionPairs.update({'t' : 'sc'})
-    if key == 's':
-      positionPairs.update({'s' : 'tc'})
-  return positionPairs
+# def findCorrectSolution(positionPairs):
+#   keys = positionPairs.keys()
+#   for key in keys:
+#     if key == 'c':
+#       positionPairs.update({'c' : 'ts'})
+#     if key == 't':
+#       positionPairs.update({'t' : 'sc'})
+#     if key == 's':
+#       positionPairs.update({'s' : 'tc'})
+#   return positionPairs
     
-def checkMatchingPerPillar(positionPairs):
-  for key in positionPairs:
-    if key == positionPairs[key]:
-      isPillarGood = False
+# def checkMatchingPerPillar(positionPairs):
+#   for key in positionPairs:
+#     if key == positionPairs[key]:
+#       isPillarGood = False
 
 # if triangle left:
 #   if has triangle in it = bad
@@ -65,14 +65,42 @@ def checkMatchingPerPillar(positionPairs):
 
 def checkIsPillarDone(insideInput, outsideInput, position):
   if insideInput[position] in outsideInput[position]:
-    isDone = False
     print("On side " + insideInput[position] + " the " + insideInput[position] + " should not be in " + outsideInput[position])
     splitIncorrectOutside = spliceString(outsideInput[position]) 
+    return splitIncorrectOutside
   else:
-    isDone = True
     print("The corresponding shape to " + insideInput[position] + " is " + outsideInput[position] + " and should be done.")
-  return isDone
+    return outsideInput[position]
 
-# def checkOutsideOrder(order, allowedOrder, shapesList):
-#   if order in shapesList:
-#     print()
+def getCorrectSolution(insideInput, position):
+  if 'c' in insideInput[position]:
+    correctSolution = ['s', 't']
+  elif 's' in insideInput[position]:
+    correctSolution = ['c', 't']
+  elif 't' in insideInput[position]:
+    correctSolution = ['c', 's']
+  else:
+    return 0
+  return correctSolution
+
+# yeah idk
+def compareSplitPillars(splitPillar1, splitPillar2, correctSolution):
+  currentPos = []
+  for letter in splitPillar1:
+    for letter in splitPillar2:
+      if letter in splitPillar1 == correctSolution:
+        currentPos.append(letter)
+      if letter in splitPillar2 == correctSolution:
+        splitPillar1.append(letter)
+        splitPillar2.pop(letter)
+
+
+
+
+
+
+
+
+
+
+
